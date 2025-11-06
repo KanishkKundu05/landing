@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentryAI - AI-Powered Monitoring</title>
+    <style>
+        /* Berkeley Mono Font Faces */
+        @font-face {
+            font-family: 'Berkeley Mono';
+            src: url('fonts/BerkeleyMono-Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Berkeley Mono';
+            src: url('fonts/BerkeleyMono-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Berkeley Mono';
+            src: url('fonts/BerkeleyMono-Oblique.otf') format('opentype');
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Berkeley Mono';
+            src: url('fonts/BerkeleyMono-Bold-Oblique.otf') format('opentype');
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            overflow-x: hidden;
+            background: #000;
+        }
+
+        /* Hero Text */
+        .hero-text {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 20;
+            font-family: 'Berkeley Mono', monospace;
+        }
+
+        .hero-text h1 {
+            font-size: 72px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-text p {
+            font-size: 28px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: -0.01em;
+        }
+
+        .hero-text .italic-bold {
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        /* Hero Container - Full image height */
+        .hero-container {
+            min-height: 100vh;
+            position: relative;
+            background-image: url('herolanding.png');
+            background-size: 120% auto;
+            background-position: top center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+        }
+
+        /* Gradient overlay */
+        .hero-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                180deg,
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(255, 255, 255, 0.02) 20%,
+                rgba(0, 0, 0, 0) 40%,
+                rgba(255, 255, 255, 0.4) 85%,
+                rgba(255, 255, 255, 1) 100%
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            position: fixed;
+            top: 45vh;
+            left: 5%;
+            z-index: 10;
+            max-width: 495px;
+            width: 36%;
+            min-width: 420px;
+            padding: 36px 43px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            will-change: transform;
+        }
+
+        .glass-card h1 {
+            font-size: 41px;
+            font-weight: 400;
+            line-height: 1.2;
+            color: #ffffff;
+            margin-bottom: 18px;
+            font-family: 'Georgia', serif;
+        }
+
+        .glass-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        .glass-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            padding-bottom: 4px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card-link:hover {
+            border-bottom-color: #ffffff;
+            gap: 12px;
+        }
+
+        .glass-card-link svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card-link:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Badge */
+        .badge {
+            position: fixed;
+            bottom: 36px;
+            left: 36px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 20px;
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1f1f1f;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+        }
+
+        /* Divider section */
+        .divider-section {
+            position: relative;
+            z-index: 10;
+            background: linear-gradient(180deg, 
+                rgba(0, 0, 0, 0) 0%,
+                rgba(255, 255, 255, 0.3) 30%,
+                rgba(255, 255, 255, 0.7) 60%,
+                rgba(255, 255, 255, 0.95) 85%,
+                #ffffff 100%
+            );
+            height: 300px;
+        }
+
+        .divider-line {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 150px;
+            background: linear-gradient(180deg, 
+                rgba(59, 130, 246, 0.2) 0%, 
+                rgba(59, 130, 246, 0.6) 30%,
+                #3b82f6 50%,
+                rgba(59, 130, 246, 0.6) 70%,
+                rgba(59, 130, 246, 0.2) 100%
+            );
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .divider-line::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #3b82f6 0%, rgba(59, 130, 246, 0.4) 50%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        /* Content section */
+        .content-section {
+            background: #ffffff;
+            padding: 80px 56px 120px;
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .content-section h2 {
+            font-size: 48px;
+            font-weight: 800;
+            color: #1f1f1f;
+            margin-bottom: 24px;
+        }
+
+        .content-section p {
+            font-size: 20px;
+            line-height: 1.7;
+            color: #4b5563;
+            max-width: 800px;
+            margin: 0 auto 48px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .feature-card {
+            background: #f9fafb;
+            padding: 40px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(59, 130, 246, 0.2);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 32px;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f1f1f;
+            margin-bottom: 16px;
+        }
+
+        .feature-card p {
+            font-size: 16px;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        /* Marquee Animation */
+        .marquee-inner {
+            animation: marqueeScroll 15s linear infinite;
+        }
+
+        @keyframes marqueeScroll {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .glass-card {
+                width: 40%;
+                min-width: 380px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .glass-card {
+                width: 50%;
+                min-width: 350px;
+                left: 3%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                background-size: auto 100%;
+                background-position: center top;
+            }
+
+            .hero-text {
+                top: 60px;
+            }
+
+            .hero-text h1 {
+                font-size: 48px;
+            }
+
+            .hero-text p {
+                font-size: 20px;
+            }
+
+            .glass-card {
+                padding: 28px 32px;
+                width: 85%;
+                min-width: unset;
+                left: 50%;
+                top: 35vh;
+                transform: translateX(-50%);
+                max-width: 450px;
+            }
+
+            .glass-card h1 {
+                font-size: 35px;
+            }
+
+            .glass-card p {
+                font-size: 14px;
+            }
+
+            .glass-card-link {
+                font-size: 14px;
+            }
+
+            .content-section {
+                padding: 80px 28px;
+            }
+
+            .content-section h2 {
+                font-size: 36px;
+            }
+
+            .content-section p {
+                font-size: 18px;
+            }
+
+            .badge {
+                bottom: 24px;
+                left: 24px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text {
+                top: 40px;
+                padding: 0 20px;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .hero-text p {
+                font-size: 18px;
+            }
+
+            .glass-card {
+                padding: 25px 22px;
+                width: 90%;
+            }
+
+            .glass-card h1 {
+                font-size: 31px;
+            }
+
+            .glass-card p {
+                font-size: 13px;
+            }
+
+            .glass-card-link {
+                font-size: 13px;
+            }
+
+            .content-section h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Badge -->
+    <div class="badge">sentryai.dev</div>
+
+    <!-- Hero Container with full image -->
+    <div class="hero-container">
+        <!-- Hero Text -->
+        <div class="hero-text">
+            <h1>Sentry</h1>
+            <p>enterprise agents that <span class="italic-bold">work</span>.</p>
+        </div>
+
+        <div class="glass-card" id="glassCard">
+            <h1>AI that runs businesses autonomously</h1>
+            <p>The General Intelligence Company is an applied AI lab working towards automating businesses full-stack with AI.</p>
+            <a href="#" class="glass-card-link">
+                Get to know us
+                <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- Companies Logo Marquee Section -->
+    <div style="background: #ffffff; padding: 80px 0 60px; margin: 0;">
+        <h3 style="font-size: 16px; text-align: center; color: #94a3b8; padding-bottom: 56px; font-weight: 500; margin: 0;">
+            Trusted by leading brands, including —
+        </h3>
+        <div style="overflow: hidden; width: 100%; position: relative; max-width: 1024px; margin: 0 auto; user-select: none;">
+            <div style="position: absolute; left: 0; top: 0; height: 100%; width: 80px; z-index: 10; pointer-events: none; background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0));"></div>
+            <div class="marquee-inner" style="display: flex; will-change: transform;">
+                <img style="margin: 0 44px; height: 32px; width: auto;" src="https://saasly.prebuiltui.com/assets/companies-logo/framer.svg" alt="Framer" />
+                <img style="margin: 0 44px; height: 32px; width: auto;" src="https://saasly.prebuiltui.com/assets/companies-logo/huawei.svg" alt="Huawei" />
+                <img style="margin: 0 44px; height: 32px; width: auto;" src="https://saasly.prebuiltui.com/assets/companies-logo/instagram.svg" alt="Instagram" />
+                <img style="margin: 0 44px; height: 32px; width: auto;" src="https://saasly.prebuiltui.com/assets/companies-logo/microsoft.svg" alt="Microsoft" />
+                <img style="margin: 0 44px; height: 32px; width: auto;" src="https://saasly.prebuiltui.com/assets/companies-logo/walmart.svg" alt="Walmart" />
+                <img style="margin: 0 44px; height: 32px; width: auto;" src="https://saasly.prebuiltui.com/assets/companies-logo/framer.svg" alt="Framer" />
+                <img style="margin: 0 44px; height: 32px; width: auto;" src="https://saasly.prebuiltui.com/assets/companies-logo/huawei.svg" alt="Huawei" />
+                <img style="margin: 0 44px; height: 32px; width: auto;" src="https://saasly.prebuiltui.com/assets/companies-logo/instagram.svg" alt="Instagram" />
+                <img style="margin: 0 44px; height: 32px; width: auto;" src="https://saasly.prebuiltui.com/assets/companies-logo/microsoft.svg" alt="Microsoft" />
+                <img style="margin: 0 44px; height: 32px; width: auto;" src="https://saasly.prebuiltui.com/assets/companies-logo/walmart.svg" alt="Walmart" />
+            </div>
+            <div style="position: absolute; right: 0; top: 0; height: 100%; width: 160px; z-index: 10; pointer-events: none; background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));"></div>
+        </div>
+    </div>
+
+    <!-- Divider Section -->
+    <div class="divider-section">
+        <div class="divider-line"></div>
+    </div>
+
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="content-wrapper">
+            <h2>AI-Powered Intelligence</h2>
+            <p>
+                SentryAI combines cutting-edge artificial intelligence with real-time monitoring to deliver insights that matter. Our platform adapts to your needs, learning from patterns and predicting issues before they become problems.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Real-Time Monitoring</h3>
+                    <p>Track your systems 24/7 with intelligent alerts that prioritize what matters most.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Driven Insights</h3>
+                    <p>Machine learning algorithms analyze patterns and provide actionable recommendations.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Response</h3>
+                    <p>Automated workflows trigger immediate responses to critical events.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll effect - glass card stays fixed until it reaches end of background image
+        const glassCard = document.getElementById('glassCard');
+        const heroContainer = document.querySelector('.hero-container');
+        
+        function updateScrollElements() {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            
+            if (glassCard) {
+                // Get hero container dimensions
+                const heroHeight = heroContainer.offsetHeight;
+                
+                // Margin from the bottom of the visible image (adjust this value as needed)
+                const bottomMargin = 1280;
+                
+                // Get the glass card dimensions
+                const cardHeight = glassCard.offsetHeight;
+                
+                // Calculate the initial top position in pixels (45vh = 45% of viewport height)
+                const cardInitialTopPx = windowHeight * 0.45;
+                
+                // Calculate when the bottom of the card (in viewport) would reach the threshold
+                // The threshold is the end of the hero section minus the margin
+                const imageEndPoint = heroHeight - bottomMargin;
+                
+                // The point where we should stop the card from being fixed
+                // This is when: scrollY + cardInitialTopPx + cardHeight >= imageEndPoint
+                const stopScrollThreshold = imageEndPoint - cardInitialTopPx - cardHeight;
+                
+                if (scrollY < stopScrollThreshold) {
+                    // Keep the card fixed in its original position (no transform)
+                    glassCard.style.position = 'fixed';
+                    glassCard.style.top = '45vh';
+                    glassCard.style.left = '5%';
+                    glassCard.style.transform = 'none';
+                } else {
+                    // Switch to absolute positioning so it stops scrolling with the viewport
+                    // Position it relative to the hero container
+                    glassCard.style.position = 'absolute';
+                    glassCard.style.top = (imageEndPoint - cardHeight) + 'px';
+                    glassCard.style.left = '5%';
+                    glassCard.style.transform = 'none';
+                }
+            }
+        }
+        
+        // Throttle scroll events for performance
+        let ticking = false;
+        function requestUpdate() {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateScrollElements();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+        
+        // Event listeners
+        window.addEventListener('scroll', requestUpdate);
+        window.addEventListener('resize', updateScrollElements);
+        window.addEventListener('load', updateScrollElements);
+        
+        // Initial call
+        updateScrollElements();
+    </script>
+</body>
+</html>
