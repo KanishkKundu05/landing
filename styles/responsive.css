@@ -169,7 +169,7 @@
         display: flex !important;
         flex-wrap: nowrap !important;
         gap: 80px !important;
-        padding: 0 80px !important;
+        padding: 0 40px !important;
         justify-content: flex-start !important;
         flex-shrink: 0;
     }
@@ -178,7 +178,7 @@
         display: flex !important;
         flex-wrap: nowrap !important;
         gap: 80px !important;
-        padding: 0 80px !important;
+        padding: 0 40px !important;
         justify-content: flex-start !important;
         flex-shrink: 0;
     }
@@ -528,7 +528,7 @@
         display: flex !important;
         flex-wrap: nowrap !important;
         gap: 70px !important;
-        padding: 0 70px !important;
+        padding: 0 35px !important;
         justify-content: flex-start !important;
         flex-shrink: 0;
     }
@@ -537,7 +537,7 @@
         display: flex !important;
         flex-wrap: nowrap !important;
         gap: 70px !important;
-        padding: 0 70px !important;
+        padding: 0 35px !important;
         justify-content: flex-start !important;
         flex-shrink: 0;
     }
