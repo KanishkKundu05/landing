@@ -52,7 +52,7 @@
     .hero-container {
         background-image: url('../hero-mobile.png');
         background-size: cover;
-        background-position: 75% center;
+        background-position: 65% center;
     }
 
     .hero-text {
@@ -68,25 +68,25 @@
     }
 
     .glass-card {
-        padding: 28px 32px;
-        width: 85%;
+        padding: 20px 22px;
+        width: 60%;
         min-width: unset;
-        left: 5%;
+        left: 3%;
         top: 45vh;
         transform: translateX(0);
-        max-width: 450px;
+        max-width: 315px;
     }
 
     .glass-card h1 {
-        font-size: 35px;
+        font-size: 24px !important;
     }
 
     .glass-card p {
-        font-size: 14px;
+        font-size: 10px !important;
     }
 
     .glass-card-link {
-        font-size: 14px;
+        font-size: 10px;
     }
 
     .content-section {
@@ -162,10 +162,10 @@
 
     .brands-wrapper {
         flex-wrap: nowrap !important;
-        gap: 60px !important;
-        padding: 0 60px 0 0 !important;
+        gap: 80px !important;
+        padding: 0 80px !important;
         justify-content: flex-start !important;
-        animation: scroll-brands 20s linear infinite;
+        animation: scroll-brands 25s linear infinite;
         will-change: transform;
         min-width: 100%;
     }
@@ -173,16 +173,17 @@
     .brands-duplicate {
         display: flex !important;
         flex-wrap: nowrap !important;
-        gap: 60px !important;
-        padding: 0 60px 0 0 !important;
+        gap: 80px !important;
+        padding: 0 80px !important;
         justify-content: flex-start !important;
         min-width: 100%;
     }
 
     .brand-logo {
-        height: 24px !important;
+        height: 28px !important;
         flex-shrink: 0;
         width: auto !important;
+        object-fit: contain;
     }
 
     @keyframes scroll-brands {
@@ -277,7 +278,7 @@
     .hero-container {
         background-image: url('../hero-mobile.png');
         background-size: cover;
-        background-position: 80% center;
+        background-position: 60% center;
     }
 
     .hero-text {
@@ -294,22 +295,22 @@
     }
 
     .glass-card {
-        padding: 25px 22px;
-        width: 90%;
-        left: 5%;
+        padding: 18px 15px;
+        width: 63%;
+        left: 3%;
         transform: translateX(0);
     }
 
     .glass-card h1 {
-        font-size: 31px;
+        font-size: 22px !important;
     }
 
     .glass-card p {
-        font-size: 13px;
+        font-size: 9px !important;
     }
 
     .glass-card-link {
-        font-size: 13px;
+        font-size: 9px;
     }
 
     .content-section h2 {
@@ -516,10 +517,10 @@
 
     .brands-wrapper {
         flex-wrap: nowrap !important;
-        gap: 50px !important;
-        padding: 0 50px 0 0 !important;
+        gap: 70px !important;
+        padding: 0 70px !important;
         justify-content: flex-start !important;
-        animation: scroll-brands 20s linear infinite;
+        animation: scroll-brands 25s linear infinite;
         will-change: transform;
         min-width: 100%;
     }
@@ -527,16 +528,17 @@
     .brands-duplicate {
         display: flex !important;
         flex-wrap: nowrap !important;
-        gap: 50px !important;
-        padding: 0 50px 0 0 !important;
+        gap: 70px !important;
+        padding: 0 70px !important;
         justify-content: flex-start !important;
         min-width: 100%;
     }
 
     .brand-logo {
-        height: 24px !important;
+        height: 26px !important;
         flex-shrink: 0;
         width: auto !important;
+        object-fit: contain;
     }
 }
 
