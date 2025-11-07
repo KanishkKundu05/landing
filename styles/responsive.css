@@ -56,7 +56,7 @@
     }
 
     .hero-text {
-        top: 120px;
+        top: 80px;
     }
 
     .hero-text h1 {
@@ -146,57 +146,52 @@
         font-size: 28px !important;
     }
 
-    /* Mobile Carousel for Brands */
+    /* Mobile Static Brands - Show only 3 logos */
     .brands-section {
         padding-bottom: 30px !important;
     }
 
     .brands-container {
-        overflow: hidden !important;
+        overflow: visible !important;
         max-width: 100% !important;
-        padding: 0 !important;
+        padding: 0 20px !important;
         width: 100% !important;
     }
 
     .brands-track {
         display: flex !important;
-        width: max-content;
-        animation: scroll-brands 25s linear infinite;
-        will-change: transform;
+        width: 100%;
+        animation: none !important;
+        justify-content: center;
     }
 
     .brands-wrapper {
         display: flex !important;
         flex-wrap: nowrap !important;
-        gap: 80px !important;
-        padding: 0 40px !important;
-        justify-content: flex-start !important;
+        gap: 40px !important;
+        padding: 0 20px !important;
+        justify-content: center !important;
         flex-shrink: 0;
+        width: 100%;
     }
 
+    /* Hide duplicate on mobile */
     .brands-duplicate {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        gap: 80px !important;
-        padding: 0 40px !important;
-        justify-content: flex-start !important;
-        flex-shrink: 0;
+        display: none !important;
     }
 
+    /* Show only IndiGo, Air India, and Cannon */
     .brand-logo {
-        height: 28px !important;
+        height: 32px !important;
         flex-shrink: 0;
         width: auto !important;
         object-fit: contain;
     }
 
-    @keyframes scroll-brands {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(-100%);
-        }
+    /* Hide Accent and TPA logos on mobile */
+    .brand-logo:nth-child(4),
+    .brand-logo:nth-child(5) {
+        display: none !important;
     }
 
     /* Features Section - Tablet/Mobile */
@@ -286,7 +281,7 @@
     }
 
     .hero-text {
-        top: 100px;
+        top: 60px;
         padding: 0 20px;
     }
 
@@ -505,48 +500,52 @@
         min-height: 650px !important;
     }
 
-    /* Mobile Carousel for Brands - Smaller screens */
+    /* Mobile Static Brands - Smaller screens - Show only 3 logos */
     .brands-section {
         padding-bottom: 30px !important;
     }
 
     .brands-container {
-        overflow: hidden !important;
+        overflow: visible !important;
         max-width: 100% !important;
-        padding: 0 !important;
+        padding: 0 16px !important;
         width: 100% !important;
     }
 
     .brands-track {
         display: flex !important;
-        width: max-content;
-        animation: scroll-brands 25s linear infinite;
-        will-change: transform;
+        width: 100%;
+        animation: none !important;
+        justify-content: center;
     }
 
     .brands-wrapper {
         display: flex !important;
         flex-wrap: nowrap !important;
-        gap: 70px !important;
-        padding: 0 35px !important;
-        justify-content: flex-start !important;
+        gap: 30px !important;
+        padding: 0 16px !important;
+        justify-content: center !important;
         flex-shrink: 0;
+        width: 100%;
     }
 
+    /* Hide duplicate on mobile */
     .brands-duplicate {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        gap: 70px !important;
-        padding: 0 35px !important;
-        justify-content: flex-start !important;
-        flex-shrink: 0;
+        display: none !important;
     }
 
+    /* Show only IndiGo, Air India, and Cannon */
     .brand-logo {
-        height: 26px !important;
+        height: 28px !important;
         flex-shrink: 0;
         width: auto !important;
         object-fit: contain;
+    }
+
+    /* Hide Accent and TPA logos on mobile */
+    .brand-logo:nth-child(4),
+    .brand-logo:nth-child(5) {
+        display: none !important;
     }
 }
 
