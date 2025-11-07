@@ -52,7 +52,7 @@
     .hero-container {
         background-image: url('../hero-mobile.png');
         background-size: cover;
-        background-position: 70% center;
+        background-position: 75% center;
     }
 
     .hero-text {
@@ -71,9 +71,9 @@
         padding: 28px 32px;
         width: 85%;
         min-width: unset;
-        left: 50%;
+        left: 5%;
         top: 45vh;
-        transform: translateX(-50%);
+        transform: translateX(0);
         max-width: 450px;
     }
 
@@ -141,6 +141,11 @@
         font-size: 12px;
     }
 
+    /* Built to handle complexity heading */
+    div[style*="background: #ffffff"] h2[style*="font-size: 48px"] {
+        font-size: 28px !important;
+    }
+
     /* Mobile Carousel for Brands */
     .brands-section {
         padding-bottom: 30px !important;
@@ -152,13 +157,13 @@
         padding: 0 !important;
         display: flex !important;
         width: 100% !important;
-        gap: 60px !important;
+        gap: 0 !important;
     }
 
     .brands-wrapper {
         flex-wrap: nowrap !important;
         gap: 60px !important;
-        padding: 0 !important;
+        padding: 0 60px 0 0 !important;
         justify-content: flex-start !important;
         animation: scroll-brands 20s linear infinite;
         will-change: transform;
@@ -169,7 +174,7 @@
         display: flex !important;
         flex-wrap: nowrap !important;
         gap: 60px !important;
-        padding: 0 !important;
+        padding: 0 60px 0 0 !important;
         justify-content: flex-start !important;
         min-width: 100%;
     }
@@ -188,13 +193,81 @@
             transform: translateX(-100%);
         }
     }
+
+    /* Features Section - Tablet/Mobile */
+    .features-section {
+        padding: 40px 16px 60px;
+    }
+
+    .features-heading {
+        font-size: 32px;
+    }
+
+    .features-subtitle {
+        font-size: 16px;
+        margin-bottom: 40px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .card-large,
+    .card-medium,
+    .card-small,
+    .card-integrations {
+        grid-column: span 1;
+    }
+
+    .feature-card {
+        padding: 24px;
+    }
+
+    .feature-content h3 {
+        font-size: 18px;
+    }
+
+    .feature-content p {
+        font-size: 13px;
+    }
+
+    .keyboard-button {
+        width: 56px;
+        height: 56px;
+    }
+
+    .keyboard-button span {
+        font-size: 18px;
+    }
+
+    .integration-logo {
+        width: 48px;
+        height: 48px;
+    }
+
+    .integration-logo img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .icon-plus {
+        width: 28px;
+        height: 28px;
+    }
+
+    .feature-icon {
+        width: 56px;
+        height: 56px;
+        padding: 14px;
+    }
 }
 
 @media (max-width: 480px) {
     .hero-container {
         background-image: url('../hero-mobile.png');
         background-size: cover;
-        background-position: 75% center;
+        background-position: 80% center;
     }
 
     .hero-text {
@@ -213,6 +286,8 @@
     .glass-card {
         padding: 25px 22px;
         width: 90%;
+        left: 5%;
+        transform: translateX(0);
     }
 
     .glass-card h1 {
@@ -273,12 +348,94 @@
     #book-demo p {
         font-size: 16px !important;
     }
+
+    /* Built to handle complexity heading - even smaller on small mobile */
+    div[style*="background: #ffffff"] h2[style*="font-size: 48px"] {
+        font-size: 22px !important;
+    }
+
+    /* Features Section - Small Mobile */
+    .features-section {
+        padding: 30px 12px 50px;
+    }
+
+    .section-badge {
+        font-size: 12px;
+        padding: 4px 16px;
+    }
+
+    .features-heading {
+        font-size: 28px;
+    }
+
+    .features-subtitle {
+        font-size: 14px;
+    }
+
+    .feature-card {
+        padding: 20px;
+    }
+
+    .feature-content h3 {
+        font-size: 16px;
+    }
+
+    .feature-content p {
+        font-size: 12px;
+    }
+
+    .keyboard-button {
+        width: 48px;
+        height: 48px;
+    }
+
+    .keyboard-button span {
+        font-size: 16px;
+    }
+
+    .integration-logo {
+        width: 44px;
+        height: 44px;
+        padding: 10px;
+    }
+
+    .integration-logo img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .icon-plus {
+        width: 24px;
+        height: 24px;
+    }
+
+    .integrations-container {
+        gap: 16px;
+    }
+
+    .feature-icon {
+        width: 48px;
+        height: 48px;
+        padding: 12px;
+    }
+
+    .feature-icon-container {
+        padding: 20px;
+    }
+
+    .placeholder-image {
+        min-height: 180px;
+    }
+
+    .feature-image-container {
+        min-height: 180px;
+    }
 }
 
 /* Book Demo Section Responsive Styles */
 @media (max-width: 768px) {
     #book-demo {
-        padding-top: 20px 16px !important;
+        padding: 40px 16px !important;
     }
 
     #book-demo h2 {
@@ -288,7 +445,11 @@
 
     #book-demo p {
         font-size: 16px !important;
-        margin-bottom: 32px !important;
+        margin-bottom: 16px !important;
+    }
+
+    #book-demo > div:last-child {
+        margin-top: 0px !important;
     }
 
     #cal-booking-container {
@@ -298,8 +459,7 @@
 
 @media (max-width: 480px) {
     #book-demo {
-        padding-top: 20px !important;
-        padding-bottom: 32px !important;
+        padding: 30px 16px !important;
     }
 
     #book-demo h2 {
@@ -309,6 +469,11 @@
     #book-demo p {
         font-size: 14px !important;
         padding: 0 8px;
+        margin-bottom: 12px !important;
+    }
+
+    #book-demo > div:last-child {
+        margin-top: 0px !important;
     }
 
     #cal-booking-container {
@@ -326,13 +491,13 @@
         padding: 0 !important;
         display: flex !important;
         width: 100% !important;
-        gap: 50px !important;
+        gap: 0 !important;
     }
 
     .brands-wrapper {
         flex-wrap: nowrap !important;
         gap: 50px !important;
-        padding: 0 !important;
+        padding: 0 50px 0 0 !important;
         justify-content: flex-start !important;
         animation: scroll-brands 20s linear infinite;
         will-change: transform;
@@ -343,7 +508,7 @@
         display: flex !important;
         flex-wrap: nowrap !important;
         gap: 50px !important;
-        padding: 0 !important;
+        padding: 0 50px 0 0 !important;
         justify-content: flex-start !important;
         min-width: 100%;
     }
