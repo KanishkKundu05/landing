@@ -31,13 +31,14 @@
 /* Features Section */
 .features-section {
     background: #ffffff;
-    padding: 5px 20px 80px;
+    padding: 5px 0 80px;
     position: relative;
 }
 
 .features-container {
     max-width: 1280px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
 .section-badge {
@@ -114,21 +115,44 @@
     line-height: 1.5;
 }
 
+.card-small .feature-content,
+.card-integrations .feature-content {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.card-small .feature-icon-container {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
 /* Card size variants */
 .card-large {
     grid-column: span 1;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
 }
 
 .card-medium {
     grid-column: span 1;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
 }
 
 .card-small {
     grid-column: span 1;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .card-integrations {
     grid-column: span 2;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 /* Feature image container with gradient overlay */
@@ -137,7 +161,7 @@
     width: 100%;
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid #e5e7eb;
+    border: none;
     min-height: 200px;
 }
 
@@ -208,7 +232,7 @@
     justify-content: center;
     gap: 24px;
     flex-wrap: wrap;
-    padding: 20px;
+    padding: 20px 24px;
 }
 
 .integration-logo {

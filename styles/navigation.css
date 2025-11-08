@@ -99,10 +99,36 @@
     height: 14px;
 }
 
-/* Scrolled state - inverted colors for visibility on white background */
+/* Scrolled state - glass effect for visibility on white background */
 .glass-nav.scrolled {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Text color changes when scrolled */
+.glass-nav.scrolled .nav-links a {
+    color: rgba(0, 0, 0, 0.85);
+    transition: color 0.3s ease;
+}
+
+.glass-nav.scrolled .nav-links a:hover {
+    color: #000000;
+}
+
+/* Button color changes when scrolled */
+.glass-nav.scrolled .nav-button {
     background: rgba(20, 20, 20, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: background 0.3s ease, border 0.3s ease;
+    color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.glass-nav.scrolled .nav-button:hover {
+    background: rgba(0, 0, 0, 1);
+    border-color: rgba(0, 0, 0, 0.2);
 }
 
